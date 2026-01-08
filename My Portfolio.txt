@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0f172a;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #cbd5f5;
+    }
+
+    nav {
+      background: #1e293b;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:right  {
+      color: #38bdf8;
+    }
+
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    section h2 {
+      margin-bottom: 20px;
+      color: #0f172a;
+      border-bottom: 2px solid #38bdf8;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    ul {
+      list-style: square;
+      margin-left: 20px;
+    }
+
+    footer {
+      background: #0f172a;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1> Vedant Thote </h1>
+  <p>Student | Programmer | Learner | Tech Enthusiast</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#education">Education</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="card">
+    <p>
+      I am a motivated student with interest in programming, problem solving,
+      and learning new technologies. I aim to build a strong career in the
+      technical field.
+    </p>
+  </div>
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+  <div class="card">
+    <p><strong>Degree:</strong>  B.Tech</p>
+    <p><strong>College:</strong> Symbiosis Institute of Technology, Nagpur </p>
+    <p><strong>Year:</strong> 2025</p>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="card">
+    <ul>
+      <li>C Programming</li>
+      <li>Data Structures</li>
+      <li>HTML & CSS</li>
+      <li>Problem Solving</li>
+    </ul>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="card">
+    <h3>Matrix Operations in C</h3>
+    <p>
+      Developed programs to perform matrix addition, multiplication,
+      and inversion using C language.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Personal Portfolio Website</h3>
+    <p>
+      Designed and developed a responsive portfolio website using
+      HTML and CSS.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Indian Knowledge System </h3>
+    <p>
+      Presentation On Jantar Mantar. 
+    </p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card">
+    <p><strong>Email:</strong> thotevedant17@gmail.com </p>
+    <p><strong>Phone:</strong> +91 8380952845</p>
+    <p><strong>GitHub:</strong> <a href="#">github.com/thotevedant17</a></p>
+    
+  </div>
+</section>
+
+
+</body>
+</html>
