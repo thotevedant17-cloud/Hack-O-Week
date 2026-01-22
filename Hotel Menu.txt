@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Menu</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+nav {
+    background-color: #2c2c2c;
+    padding: 12px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+header {
+    text-align: center;
+    background-color: #444;
+    color: white;
+    padding: 25px;
+}
+
+.room-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+section {
+    max-width: 900px;
+    margin: 25px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #8b0000;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.menu-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.veg { color: green; }
+.nonveg { color: red; }
+
+button {
+    padding: 6px 14px;
+    background-color: #8b0000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a00000;
+}
+
+.special {
+    background-color: #fff3cd;
+}
+
+.cart {
+    background-color: #e9ecef;
+}
+
+footer {
+    text-align: center;
+    background-color: #2c2c2c;
+    color: white;
+    padding: 15px;
+}
+
+@media (max-width: 600px) {
+    .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    button {
+        margin-top: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+🛒 Cart Items: <span id="cart-count">0</span>
+</nav>
+
+<header>
+<h1>Monarch's Buffet Hotel</h1>
+<p>Luxury • Comfort • Taste</p>
+</header>
+
+<img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" class="room-image">
+
+<!-- Starters -->
+<section>
+<h2>Starters</h2>
+<div class="menu-item">
+<div class="menu-left"><span class="veg">🟢</span> Paneer Tikka – ₹220</div>
+<button onclick="addToCart('Paneer Tikka',220)">Add to Cart</button>
+</div>
+<div class="menu-item">
+<div class="menu-left"><span class="nonveg">🔴</span> Chicken Soup – ₹160</div>
+<button onclick="addToCart('Chicken Soup',160)">Add to Cart</button>
+</div>
+</section>
+
+<!-- Lunch -->
+<section>
+<h2>Lunch</h2>
+<div class="menu-item">
+<div class="menu-left"><span class="veg">🟢</span> Veg Thali – ₹250</div>
+<button onclick="addToCart('Veg Thali',250)">Add to Cart</button>
+</div>
+<div class="menu-item">
+<div class="menu-left"><span class="nonveg">🔴</span> Chicken Biryani – ₹320</div>
+<button onclick="addToCart('Chicken Biryani',320)">Add to Cart</button>
+</div>
+</section>
+
+<!-- Dinner -->
+<section>
+<h2>Dinner</h2>
+<div class="menu-item">
+<div class="menu-left"><span class="veg">🟢</span> Paneer Butter Masala – ₹280</div>
+<button onclick="addToCart('Paneer Butter Masala',280)">Add to Cart</button>
+</div>
+<div class="menu-item">
+<div class="menu-left"><span class="nonveg">🔴</span> Butter Chicken – ₹340</div>
+<button onclick="addToCart('Butter Chicken',340)">Add to Cart</button>
+</div>
+</section>
+
+<!-- Desserts -->
+<section>
+<h2>Desserts</h2>
+<div class="menu-item">
+<div class="menu-left"><span class="veg">🟢</span> Gulab Jamun – ₹120</div>
+<button onclick="addToCart('Gulab Jamun',120)">Add to Cart</button>
+</div>
+<div class="menu-item">
+<div class="menu-left"><span class="veg">🟢</span> Chocolate Lava Cake – ₹180</div>
+<button onclick="addToCart('Chocolate Lava Cake',180)">Add to Cart</button>
+</div>
+<div class="menu-item">
+<div class="menu-left"><span class="veg">🟢</span> Vanilla Ice Cream – ₹100</div>
+<button onclick="addToCart('Vanilla Ice Cream',100)">Add to Cart</button>
+</div>
+</section>
+
+<!-- Today's Special -->
+<section class="special">
+<h2>Today's Special</h2>
+<div class="menu-item">
+<div class="menu-left"><span class="nonveg">🔴</span> Chef’s Special Fish Curry – ₹360</div>
+<button onclick="addToCart('Fish Curry',360)">Add to Cart</button>
+</div>
+<div class="menu-item">
+<div class="menu-left"><span class="veg">🟢</span> Special Veg Biryani – ₹280</div>
+<button onclick="addToCart('Special Veg Biryani',280)">Add to Cart</button>
+</div>
+</section>
+
+<!-- Cart -->
+<section class="cart">
+<h2>Your Cart</h2>
+<ul id="cart-items"></ul>
+<h3>Total Amount: ₹<span id="total">0</span></h3>
+</section>
+
+<footer>
+    <p> City center, India</p>
+<p>📞 Contact: 98765 43210</p>
+<p>  monarchbuffet@gmail.com</p>
+</footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(item, price) {
+    cart.push({item, price});
+    total += price;
+    updateCart();
+}
+
+function removeFromCart(index) {
+    total -= cart[index].price;
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function updateCart() {
+    const cartItems = document.getElementById("cart-items");
+    const totalEl = document.getElementById("total");
+    const countEl = document.getElementById("cart-count");
+
+    cartItems.innerHTML = "";
+    cart.forEach((c, i) => {
+        cartItems.innerHTML += 
+        `<li>${c.item} - ₹${c.price} 
+        <button onclick="removeFromCart(${i})">Remove</button></li>`;
+    });
+
+    totalEl.textContent = total;
+    countEl.textContent = cart.length;
+}
+</script>
+
+</body>
+</html>
