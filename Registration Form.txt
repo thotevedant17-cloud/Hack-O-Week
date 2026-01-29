@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IEEE Conference Registration Form</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(140deg, #2a857a, #dd3e98);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-wrap {
+    background: white;
+    width: 550px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+}
+
+.form-wrap h2 {
+    text-align: center;
+    color: #4c2a85;
+    margin-bottom: 6px;
+}
+
+.form-wrap p {
+    text-align: center;
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+label {
+    margin-top: 12px;
+    display: block;
+    font-weight: 600;
+    color: #333;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 7px;
+    border: 1px solid #aaa;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #4c2a85;
+    box-shadow: 0 0 6px rgba(76,42,133,0.4);
+}
+
+textarea {
+    height: 70px;
+    resize: none;
+}
+
+.options input {
+    width: auto;
+    margin-right: 6px;
+}
+
+.btn-group {
+    text-align: center;
+    margin-top: 18px;
+}
+
+button {
+    padding: 10px 26px;
+    border: none;
+    border-radius: 22px;
+    background: #2a8585;
+    color: white;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+</style>
+</head>
+
+<body>
+
+<div class="form-wrap">
+
+    <h2>IEEE Conference Registration</h2>
+    <p>Register to attend the IEEE Technical Conference</p>
+
+    <form>
+
+        <!-- IEEE logo (optional) -->
+        <div style="text-align: center; margin-bottom:10px;">
+            <img src="c:\Users\Vedant Thote\OneDrive\Desktop\ieee.svg"
+                 alt="IEEE Logo"
+                 style="width:80px;">
+        </div>
+
+        <!-- Personal details -->
+        <label>First Name *</label>
+        <input type="text" required>
+
+        <label>Last Name *</label>
+        <input type="text" required>
+
+        <label>Preferred Name on Badge</label>
+        <input type="text">
+
+        <label>Organization / Institution *</label>
+        <input type="text" required>
+
+        <label>Job Title / Role *</label>
+        <input type="text" required>
+
+        <label>Address *</label>
+        <input type="text">
+
+        <label>City *</label>
+        <input type="text">
+
+        <label>Country *</label>
+        <input type="text">
+
+        <label>Email Address *</label>
+        <input type="email" required>
+
+        <label>Mobile Number *</label>
+        <input type="tel" placeholder="+91 XXXXXXXXXX" required>
+
+        <!-- IEEE Membership -->
+        <label>IEEE Member?</label>
+        <div class="options">
+            <input type="radio" name="member" required> Yes
+            <input type="radio" name="member"> No
+        </div>
+
+        <label>IEEE Membership Number (if applicable)</label>
+        <input type="text">
+
+        <!-- Registration category -->
+        <label>Registration Category *</label>
+        <select required>
+            <option value="">-- Select Category --</option>
+            <option>IEEE Member – Full</option>
+            <option>IEEE Student Member</option>
+            <option>Non-Member – Full</option>
+            <option>IEEE Life Member</option>
+        </select>
+
+        <!-- Fees and extras -->
+        <label>Extra Add-Ons</label>
+        <select>
+            <option>None</option>
+            <option>Workshop A – ₹500</option>
+            <option>Banquet Dinner – ₹800</option>
+        </select>
+
+        <!-- Special requirements -->
+        <label>Special Dietary Requirements</label>
+        <textarea placeholder="Vegetarian, gluten-free, allergies…"></textarea>
+
+        <!-- Emergency contact -->
+        <label>Emergency Contact Name *</label>
+        <input type="text" required>
+
+        <label>Emergency Contact Phone *</label>
+        <input type="tel" required>
+
+        <!-- Terms and policies -->
+        <div style="margin-top:14px; font-size:14px;">
+            <input type="checkbox" required>
+            I have read and agree to the IEEE Privacy Policy and Event Terms. (By submitting this form, I acknowledge that
+            my registration data will be used for event processing and communications in accordance with IEEE policy.) :contentReference[oaicite:2]{index=2}
+        </div>
+
+        <!-- Submit buttons -->
+        <div class="btn-group">
+            <button type="submit">Submit Registration</button>
+            <button type="reset">Reset Form</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
