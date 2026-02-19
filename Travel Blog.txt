@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WanderWithMe</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f9ff;
+    scroll-behavior: smooth;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+/* Navbar */
+nav {
+    background: #0f3057;
+    padding: 12px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #00d4ff;
+}
+
+/* Section Titles */
+.section-title {
+    text-align: center;
+    margin-top: 40px;
+    color: #1e3c72;
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Cards */
+.blog-post {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+.blog-post img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Filters */
+.filters {
+    text-align: center;
+    margin: 20px;
+}
+
+.filters button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    background: #1e3c72;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.filters button:hover {
+    background: #2a5298;
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.4s;
+}
+
+.gallery img:hover {
+    transform: scale(1.08);
+}
+
+/* Chatbox */
+.chatbox {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: white;
+    padding: 15px;
+    width: 260px;
+    box-shadow: 0 0 10px gray;
+    border-radius: 10px;
+}
+
+#chat-output {
+    height: 150px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .grid { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: 1fr; }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>🌍 WanderWithMe</h1>
+    <p>Explore the World Smartly</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#countries">Countries</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<!-- DESTINATIONS -->
+<h2 class="section-title" id="home">🌎 Featured Destinations</h2>
+
+<div class="filters" id="countries">
+    <button onclick="filterSelection('all')">All</button>
+    <button onclick="filterSelection('india')">India</button>
+    <button onclick="filterSelection('france')">France</button>
+    <button onclick="filterSelection('usa')">USA</button>
+</div>
+
+<div class="grid">
+
+<div class="blog-post india">
+    <img src="https://hblimg.mmtcdn.com/content/hubble/img/agra/mmt/activities/m_activities_agra_taj_mahal_4_l_492_801.jpg">
+    <h3>Taj Mahal</h3>
+    <p>Agra – Built by Shah Jahan (1632–1653).</p>
+</div>
+
+<div class="blog-post india">
+    <img src="https://maharashtratourism.gov.in/wp-content/uploads/2023/10/sinhagad-fort.jpg">
+    <h3>Sinhagad Fort</h3>
+    <p>Pune – Historic fort of Shivaji Maharaj.</p>
+</div>
+
+<div class="blog-post india">
+    <img src="https://static-blog.treebo.com/wp-content/uploads/2024/07/History-4-1024x675.jpg">
+    <h3>Shaniwar Wada</h3>
+    <p>Pune – Built in 1732 by Bajirao I.</p>
+</div>
+
+<div class="blog-post france">
+    <img src="https://cdn.pixabay.com/photo/2016/11/19/11/05/architecture-1838626_640.jpg">
+    <h3>Eiffel Tower</h3>
+    <p>Paris – Built in 1889.</p>
+</div>
+
+<div class="blog-post usa">
+    <img src="https://images.unsplash.com/photo-1515081774057-84dcf72d0cf1?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHN0YXR1ZSUyMG9mJTIwbGliZXJ0eXxlbnwwfHwwfHx8MA==">
+    <h3>Statue of Liberty</h3>
+    <p>New York – Gift from France.</p>
+</div>
+
+<div class="blog-post usa">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Grand_canyon_wikivoyage_banner.jpg">
+    <h3>Grand Canyon</h3>
+    <p>Arizona – Famous natural wonder.</p>
+</div>
+
+</div>
+
+<!-- GALLERY -->
+<h2 class="section-title" id="gallery">📸 World Gallery</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+<img src="https://images.unsplash.com/photo-1473625247510-8ceb1760943f">
+<img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1">
+<img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+<img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c">
+<img src="https://images.unsplash.com/photo-1483721310020-03333e577078">
+<img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad">
+<img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d">
+<img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29">
+
+</div>
+
+<!-- CONTACT -->
+<h2 class="section-title" id="contact">📞 Contact</h2>
+<p style="text-align:center;">Email: wanderwithme@gmail.com</p>
+
+<!-- AI CHATBOT -->
+<div class="chatbox">
+    <h3>🤖 AI Assistant</h3>
+    <div id="chat-output"></div>
+    <input type="text" id="user-input" placeholder="Ask travel questions..." style="width:100%">
+    <button onclick="askAI()" style="width:100%; margin-top:5px;">Send</button>
+</div>
+
+<script>
+// FILTER
+function filterSelection(category) {
+    let items = document.getElementsByClassName("blog-post");
+
+    for (let i = 0; i < items.length; i++) {
+        if (category === "all") {
+            items[i].style.display = "block";
+        } else {
+            items[i].style.display = items[i].classList.contains(category) ? "block" : "none";
+        }
+    }
+}
+
+// AI ASSISTANT
+function askAI() {
+    let input = document.getElementById("user-input").value.toLowerCase();
+    let output = document.getElementById("chat-output");
+
+    let response = "I can help with travel tips!";
+
+    if (input.includes("pune")) {
+        response = "Visit Sinhagad Fort and Shaniwar Wada in Pune!";
+    }
+    else if (input.includes("goa")) {
+        response = "Best time to visit Goa is Nov–Feb.";
+    }
+    else if (input.includes("paris")) {
+        response = "Paris is famous for Eiffel Tower and cafes.";
+    }
+
+    output.innerHTML += "<p><b>You:</b> " + input + "</p>";
+    output.innerHTML += "<p><b>AI:</b> " + response + "</p>";
+
+    document.getElementById("user-input").value = "";
+}
+</script>
+
+</body>
+</html>
