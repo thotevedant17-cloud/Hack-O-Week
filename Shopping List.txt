@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ElectroMart</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#f1f3f6;
+}
+
+header{
+background:#2874f0;
+color:white;
+padding:15px;
+text-align:center;
+position:sticky;
+top:0;
+}
+
+.controls{
+background:white;
+padding:15px;
+text-align:center;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+input,select{
+padding:10px;
+margin:5px;
+width:220px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:20px;
+}
+
+.product-card{
+background:white;
+padding:15px;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.product-card:hover{
+transform:translateY(-5px);
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.product-card img{
+width:100%;
+height:180px;
+object-fit:contain;
+}
+
+.product-name{
+text-align:center;
+font-weight:bold;
+margin-top:8px;
+}
+
+.price{color:green;font-weight:bold;}
+.stars{color:orange;}
+
+button{
+padding:5px 10px;
+margin:5px;
+cursor:pointer;
+border:none;
+border-radius:5px;
+}
+
+.cart-btn{background:#ff9f00;color:white;}
+.wish-btn{background:#fb641b;color:white;}
+
+.section{
+background:white;
+margin:20px;
+padding:15px;
+border-radius:8px;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:8px;
+box-shadow:0 0 20px black;
+width:320px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>ElectroMart</h1>
+</header>
+
+<div class="controls">
+<input type="text" id="search" placeholder="Search product..." onkeyup="applyFilters()">
+<select id="category" onchange="applyFilters()">
+<option value="">All</option>
+<option value="mobile">Mobiles</option>
+<option value="laptop">Laptops</option>
+<option value="tablet">Tablets</option>
+<option value="smartwatch">Smartwatches</option>
+<option value="headphone">Headphones</option>
+<option value="earbuds">Earbuds</option>
+<option value="speaker">Speakers</option>
+<option value="accessory">Accessories</option>
+</select>
+</div>
+
+<div class="products" id="productList"></div>
+
+<div class="section">
+<h2>🛒 Cart</h2>
+<ul id="cartItems"></ul>
+<h3>Total: ₹<span id="total">0</span></h3>
+</div>
+
+<div class="section">
+<h2>❤️ Wishlist</h2>
+<ul id="wishlistItems"></ul>
+</div>
+
+<div class="modal" id="modal">
+<h2 id="mName"></h2>
+<p id="mPrice"></p>
+<p id="mRating"></p>
+<button onclick="closeModal()">Close</button>
+</div>
+
+<script>
+
+const products=[
+
+// Mobiles
+{name:"iPhone 15 Pro",cat:"mobile",price:129999,r:5,img:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"},
+{name:"Samsung Galaxy S24",cat:"mobile",price:99999,r:5,img:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"},
+{name:"Google Pixel 8",cat:"mobile",price:79999,r:4,img:"https://images.unsplash.com/photo-1603791440384-56cd371ee9a7"},
+
+// Laptops
+{name:"MacBook Air",cat:"laptop",price:109999,r:5,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"},
+{name:"Dell XPS",cat:"laptop",price:119999,r:5,img:"https://images.unsplash.com/photo-1588872657578-7efd1f1555ed"},
+{name:"HP Spectre",cat:"laptop",price:99999,r:4,img:"https://images.unsplash.com/photo-1518770660439-4636190af475"},
+
+// Tablets
+{name:"iPad Pro",cat:"tablet",price:99999,r:5,img:"https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04"},
+{name:"Samsung Tab",cat:"tablet",price:74999,r:4,img:"https://images.unsplash.com/photo-1542751110-97427bbecf20"},
+
+// Smartwatch
+{name:"Apple Watch",cat:"smartwatch",price:45999,r:5,img:"https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b"},
+{name:"Galaxy Watch",cat:"smartwatch",price:39999,r:4,img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30"},
+
+// Audio
+{name:"Sony Headphones",cat:"headphone",price:29999,r:5,img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e"},
+{name:"AirPods",cat:"earbuds",price:24999,r:5,img:"https://images.unsplash.com/photo-1585386959984-a41552262b57"},
+{name:"JBL Speaker",cat:"speaker",price:11999,r:5,img:"https://images.unsplash.com/photo-1583225214464-9296029427aa"},
+
+// Accessories
+{name:"Wireless Mouse",cat:"accessory",price:1999,r:4,img:"https://images.unsplash.com/photo-1587829741301-dc798b83add3"},
+{name:"Keyboard",cat:"accessory",price:2999,r:4,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"}
+
+];
+
+let cart=[];
+let total=0;
+
+function display(list){
+const box=document.getElementById("productList");
+box.innerHTML="";
+list.forEach(p=>{
+box.innerHTML+=`
+<div>
+<div class="product-card" onclick="show('${p.name}',${p.price},${p.r})">
+<img src="${p.img}">
+<p class="price">₹${p.price}</p>
+<p class="stars">${"★".repeat(p.r)}</p>
+<button class="cart-btn" onclick="event.stopPropagation();add('${p.name}',${p.price})">Add</button>
+<button class="wish-btn" onclick="event.stopPropagation();wish('${p.name}')">Wish</button>
+</div>
+<div class="product-name">${p.name}</div>
+</div>`;
+});
+}
+
+function applyFilters(){
+const t=document.getElementById("search").value.toLowerCase();
+const c=document.getElementById("category").value;
+display(products.filter(p=>
+p.name.toLowerCase().includes(t)&&(c==""||p.cat==c)));
+}
+
+function add(n,p){
+cart.push({n,p});
+total+=p;
+updateCart();
+}
+
+function updateCart(){
+document.getElementById("cartItems").innerHTML=
+cart.map((i,idx)=>`<li>${i.n} - ₹${i.p}
+<button onclick="remove(${idx})">❌</button></li>`).join("");
+document.getElementById("total").innerText=total;
+}
+
+function remove(i){
+total-=cart[i].p;
+cart.splice(i,1);
+updateCart();
+}
+
+function wish(n){
+document.getElementById("wishlistItems").innerHTML+=`<li>${n}</li>`;
+}
+
+function show(n,p,r){
+document.getElementById("mName").innerText=n;
+document.getElementById("mPrice").innerText="₹"+p;
+document.getElementById("mRating").innerText="★".repeat(r);
+document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+display(products);
+
+</script>
+
+</body>
+</html>
